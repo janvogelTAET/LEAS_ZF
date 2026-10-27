@@ -1,0 +1,58 @@
+% !TEX root = ../main.tex
+% =====================================================================
+\section{Halbleiter}
+% =====================================================================
+\begin{symtab}
+E$_{ein}$ & Energie einschaltvorgang & [Ws] \\
+E$_{aus}$ & Energie ausschaltvorgang & [Ws] \\
+U & Spannung & [V] \\
+I & Strom & [A] \\
+P$_{vSchalt}$ & Verlustleistung beim Schalten & [W] \\
+P$_{vLeit}$ & Verlustleitung beim Leiten & [W] \\
+r$_D$ & Widerstand Halbleiter & [$\Omega$] \\
+f & Schaltfrequenz & [Hz] \\
+T$_{ein}$ & einschaltzeit & [s] \\
+T$_{aus}$ & ausschaltzeit & [s] \\
+\end{symtab}
+
+\subsection{Graphen}
+\vspace*{\fill}
+\fig[1.0]{halbleiter_tabelle}
+
+\columnbreak
+\fig[0.6]{halbleiter_leistung_frequenz}
+
+% ---------------------------------------------------------------------
+\subsection{Schaltverluste}
+\fig[0.6]{schaltverluste}
+\begin{gather*}
+E_{ein} = \int_0^{T_{ein}} u(t) \cdot i(t)\, dt \\
+E_{aus} = \int_0^{T_{aus}} u(t) \cdot i(t)\, dt \\
+P_{vSchalt} = (E_{ein} + E_{aus}) \cdot f
+\end{gather*}
+
+\columnbreak
+% ---------------------------------------------------------------------
+\subsection{Leitverluste}
+\fig[0.6]{leitverluste_ersatz}
+\begin{gather*}
+P_{vLeit} = \frac{1}{T} \cdot \int_0^T u(t) \cdot i(t)\, dt = U_D \cdot I_{avg} + I_{rms}^2 \cdot r_D
+\end{gather*}
+
+% ---------------------------------------------------------------------
+\subsection{Kühlung und Halbleitertemperatur}
+\begin{symtab}
+R$_{th}$ & Thermischer widerstand & [K/W] \\
+T & Temperatur & [K, C] \\
+P$_{vTot}$ & Verlustleistung Total & [W] \\
+\end{symtab}
+\fig[0.75]{kuehlung}
+\begin{gather*}
+\Delta T_{jc} = T_j - T_c = P_{vTot} \cdot R_{thjc} \\
+P_{vTot} = P_{vLeit} + P_{vSchalt} \\
+\Delta T_{ch} = T_c - T_h = P_{vTot} \cdot R_{thch} \\
+\Delta T_{ha} = T_h - T_a = P_{vTot} \cdot R_{thha} \\
+\Delta T_{ja} = T_j - T_a = P_{vTot} \cdot R_{thja} \\
+R_{thja} = R_{thjc} + R_{thch} + R_{thha} \\
+T_j = T_a + \Delta T_{ja}
+\end{gather*}

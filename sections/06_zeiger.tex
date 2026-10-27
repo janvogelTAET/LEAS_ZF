@@ -1,0 +1,79 @@
+% !TEX root = ../main.tex
+% =====================================================================
+\section{Zeiger}
+% =====================================================================
+\begin{symtab}
+$U$ & Spannung & [V] \\
+$I$ & Strom & [A] \\
+$\hat{I}$ & Stromamplitude & [A] \\
+$L_{ph}$ & Phaseninduktivität & [H] \\
+$\psi$ & Flussverkettung & [Wb] \\
+$\omega$ & Kreisfrequenz & [rad/s] \\
+$f$ & Frequenz & [Hz] \\
+$t$ & Zeit & [s] \\
+$\varphi_i$ & Anfangsphase des Stroms & [rad] \\
+$\theta$ & Raumwinkel (Wicklungsachse) & [rad] \\
+\end{symtab}
+
+\subsection{Drehfeldzeiger}
+\fig[0.6]{drehfeldzeiger}
+
+Drei räumlich um $120^\circ$ versetzte Spulen mit zeitlich um $-120^\circ$
+phasenverschobenen Strömen erzeugen ein Drehfeld konstanter Amplitude.\\
+Für die drei um $120^\circ$ phasenverschobenen Ströme gilt
+\[
+i_k(t) = \hat{I}\cos(\omega t + \varphi_k), \qquad \psi_k(t) = L_{ph} i_k(t), \quad k \in \{a,b,c\}.
+\]
+Die Flussverkettungen der drei Phasen bilden durch geometrische Addition
+ein Drehfeld. Die reelle Achse des Koordinatensystems fällt mit der
+Wicklungsachse von Phase a zusammen. Die Addition der Momentanwerte liefert
+den resultierenden Flussverkettungs-Drehzeiger.
+
+\columnbreak
+\fig[0.6]{drehfeldzeiger_fluss}
+
+Mit dem Konventionsfaktor $2/3$ ergibt sich für den Flussverkettungs-Drehzeiger
+\[
+\vec{\psi} = \frac{2}{3} \sum_{k=a,b,c} \psi_k e^{j\theta_k} = \hat{I} L_{ph} e^{j(\omega t + \varphi_i)}
+\]
+
+\subsubsection{Drehfeldzeigertransformation: Dreiphasenebene $\Rightarrow$ Drehzeiger}
+Dreiphasige Grössen lassen sich analog zur Flussverkettung als Drehzeiger
+in der komplexen Ebene darstellen. Die Transformation gilt allgemein für
+Flussverkettungen, Ströme, Spannungen sowie beliebige Dreiphasengrößen $x$.
+\begin{gather*}
+\vec{\psi}(t) = \frac{2}{3}\Big[\psi_a(t) + \psi_b(t) e^{j120^\circ} + \psi_c(t) e^{-j120^\circ}\Big] \\
+\vec{i}(t) = \frac{2}{3}\Big[i_a(t) + i_b(t) e^{j120^\circ} + i_c(t) e^{-j120^\circ}\Big] \\
+\vec{u}(t) = \frac{2}{3}\Big[u_a(t) + u_b(t) e^{j120^\circ} + u_c(t) e^{-j120^\circ}\Big] \\
+\vec{x}(t) = \frac{2}{3}\Big[x_a(t) + x_b(t) e^{j120^\circ} + x_c(t) e^{-j120^\circ}\Big]
+\end{gather*}
+Die Drehzeigerdarstellung ermöglicht eine vereinfachte Analyse gegenüber
+der Beschreibung mit einzelnen Phasengrössen. Für symmetrische,
+sinusförmige Dreiphasensysteme besitzt der Drehzeiger eine konstante Länge
+und rotiert mit der Frequenz der Phasengrössen. Seine Spitze beschreibt
+dabei einen Kreis in der komplexen Ebene.
+
+\subsubsection{Drehfeldzeigertransformation: Drehzeiger $\Rightarrow$ Zeiger}
+Durch Transformation in ein mit $\omega_K$ rotierendes Koordinatensystem wird der
+Drehzeiger zu einem zeitlich konstanten Zeiger.
+\begin{gather*}
+X(t) = \vec{x}(t)\, e^{-j\int \omega_K\, dt}, \\
+X(t) = \vec{x}(t)\, e^{-j\omega_K t} \qquad (\omega_K = \text{konstant}), \\
+X(t) = X_x + j\,X_y \;(= X_d + j\,X_q).
+\end{gather*}
+\begin{achtung}
+$\omega$ beschreibt die physikalische Drehung\\
+$\omega_K$ die Drehung des Bezugssystems.\\
+Gleich sind sie \textbf{nur} im synchronen Koordinatensystem
+\end{achtung}
+
+\columnbreak
+\subsubsection{Drehfeldzeigertransformation: Drehzeiger $\Rightarrow$ Phasengrösse}
+Die Rücktransformation ist eindeutig nur bei Berücksichtigung der gleichphasigen Komponente $x_0$.
+\vspace{2em}
+\begin{align*}
+x_a &= x_\alpha + x_0, \\
+x_b &= \tfrac{1}{2}(\sqrt{3}x_\beta - x_\alpha) + x_0 \\
+x_c &= \tfrac{1}{2}(-\sqrt{3}x_\beta - x_\alpha) + x_0
+\end{align*}
+\vspace{1em}

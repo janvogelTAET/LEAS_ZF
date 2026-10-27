@@ -1,0 +1,146 @@
+% !TEX root = ../main.tex
+% =====================================================================
+\section{Wechselrichter}
+% =====================================================================
+\begin{symtab}
+U & Spannung & [V] \\
+U$_{dc}$ & DC-Spannung, Zwischenkreisspannung & [V] \\
+U$_a(t)$ & Wechselrichterspannung & [V] \\
+U$_g$ & Gegenspannung & [V] \\
+I & Strom & [A] \\
+v & Harmonische (3, 5, 7, \dots) & [] \\
+$\alpha$ & Zündwinkel & [°] \\
+M & Modulationsgrad & [] \\
+$\hat{I}_{a,v}(t)$ & Peakstrom einer Harmonischen & [A] \\
+\end{symtab}
+
+\subsection{Einphasig}
+\fig[0.6]{wr_einphasig}
+
+\columnbreak
+\fig[0.6]{wr_einphasig_verlaeufe}
+
+\subsection{Einphasige Brückenschaltung}
+\fig[0.9]{wr_bruecke}
+
+\columnbreak
+\fig[0.6]{wr_bruecke_verlaeufe}
+
+Grundfrequenztaktung:
+\begin{gather*}
+\hat{U}_{a1} = \frac{4}{\pi} \cdot U_{dc} \cdot cos \alpha \\
+\hat{U}_{av} = \frac{4}{\pi} \cdot U_{dc} \cdot \frac{1}{v} cos(v \cdot \alpha)
+\end{gather*}
+
+% ---------------------------------------------------------------------
+\subsection{Dreiphasig}
+\fig[0.9]{wr_dreiphasig}
+\begin{gather*}
+u_0(t) = \frac{1}{3} \cdot (u_{a0} + u_{b0} + u_{c0}) \\
+u_a(t) = u_{a0}(t) - u_0(t) \\
+u_b(t) = u_{b0}(t) - u_0(t) \\
+u_c(t) = u_{c0}(t) - u_0(t)
+\end{gather*}
+
+\columnbreak
+% ---------------------------------------------------------------------
+\subsection{Steuerverfahren}
+\fig[0.6]{wr_grundfrequenztaktung}
+\begin{gather*}
+u_{a0}(t) = \frac{4 \cdot U_{dc}}{\pi \cdot 2} \cdot \sum_v^\infty \frac{1}{v} \cdot sin(v \cdot \omega_1 \cdot t) \\
+u_a(t) = \frac{4 \cdot U_{dc}}{\pi \cdot 2} \cdot \sum_v^\infty \frac{1}{v} \cdot sin(v \cdot \omega_1 \cdot t) \\
+\hat{U}_{a,v=1}(t) = \frac{4 \cdot U_{dc}}{\pi \cdot 2} = 1.273 \cdot \frac{U_{dc}}{2} \\
+\hat{U}_{a,v}(t) = \frac{4 \cdot U_{dc}}{\pi \cdot 2} \cdot \frac{1}{v}
+\end{gather*}
+\begin{achtung}
+Ströme der n mal 3 Harmonischen sind 0
+\end{achtung}
+\begin{gather*}
+\hat{I}_{a,v}(t) = \frac{\hat{U}_{a,v}(t)}{\omega \cdot L} \cdot \frac{1}{v} \\
+\hat{U}_{a,v=1,rms}(t) = \frac{1}{\sqrt{2}} \frac{4 \cdot U_{dc}}{\pi \cdot 2} = 0.900 \cdot \frac{U_{dc}}{2} \\
+\hat{U}_{a,rms}(t) = \sqrt{\frac{8}{9}} \frac{U_{dc}}{2} = 0.943 \cdot \frac{U_{dc}}{2}
+\end{gather*}
+
+\columnbreak
+\subsubsection{Trägerverfahren dreiphasig}
+\fig[0.45]{wr_traegerverfahren}
+\begin{gather*}
+M_{max} = \frac{2}{\sqrt{3}}
+\end{gather*}
+Einphasige Brückenschaltung:
+\begin{gather*}
+\hat{U}_{a,v=1} = M \cdot U_{dc}
+\end{gather*}
+Mittelpunktschaltung:
+\begin{gather*}
+\hat{U}_{a,v=1} = M \cdot \frac{U_{dc}}{2}
+\end{gather*}
+beide mit:
+\begin{gather*}
+M = \frac{\hat{U}_{sinusf\ddot{o}rmigerSollwert}}{\hat{U}_{Tr\ddot{a}gersignal}}
+\end{gather*}
+Zu erwartende Frequenzanteile:\\
+\begin{symtab}
+f & Frequenz Grundschwingung & [Hz] \\
+f$_{HL}$ & Schaltfrequenz Halbleiter & [Hz] \\
+\end{symtab}
+{\setlength{\jot}{1pt}
+\begin{gather*}
+f_{HL} \pm 2 \cdot f, f_{HL} \pm 4 \cdot f, f_{HL} \pm 6 \cdot f, \\
+2 \cdot f_{HL} \pm f, 2 \cdot f_{HL} \pm 3 \cdot f, 2 \cdot f_{HL} \pm 5 \cdot f, \\
+3 \cdot f_{HL} \pm 2 \cdot f
+\end{gather*}}
+Zu erwartende Harmonische:\\
+Alle ausser Vielfache von 3.\\
+5, 7, 11, 13, 17 \dots
+
+\subsubsection{Drehzeigermodulation}
+{\centering\tiny\setlength{\tabcolsep}{1.5pt}\renewcommand{\arraystretch}{1.05}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+Zustand & $s_a$ & $s_b$ & $s_c$ & $u_{a0}$ & $u_{b0}$ & $u_{c0}$ & $u_a$ & $u_b$ & $u_c$ & $u_0$ \\ \hline
+$^0Z$ & -1 & -1 & -1 & $-U_{dc}/2$ & $-U_{dc}/2$ & $-U_{dc}/2$ & 0 & 0 & 0 & $-U_{dc}/2$ \\ \hline
+$^1Z$ & 1 & -1 & -1 & $U_{dc}/2$ & $-U_{dc}/2$ & $-U_{dc}/2$ & $2U_{dc}/3$ & $-U_{dc}/3$ & $-U_{dc}/3$ & $-U_{dc}/6$ \\ \hline
+$^2Z$ & 1 & 1 & -1 & $U_{dc}/2$ & $U_{dc}/2$ & $-U_{dc}/2$ & $U_{dc}/3$ & $U_{dc}/3$ & $-2U_{dc}/3$ & $U_{dc}/6$ \\ \hline
+$^3Z$ & -1 & 1 & -1 & $-U_{dc}/2$ & $U_{dc}/2$ & $-U_{dc}/2$ & $-U_{dc}/3$ & $2U_{dc}/3$ & $-U_{dc}/3$ & $-U_{dc}/6$ \\ \hline
+$^4Z$ & -1 & 1 & 1 & $-U_{dc}/2$ & $U_{dc}/2$ & $U_{dc}/2$ & $-2U_{dc}/3$ & $U_{dc}/3$ & $U_{dc}/3$ & $U_{dc}/6$ \\ \hline
+$^5Z$ & -1 & -1 & 1 & $-U_{dc}/2$ & $-U_{dc}/2$ & $U_{dc}/2$ & $-U_{dc}/3$ & $-U_{dc}/3$ & $2U_{dc}/3$ & $-U_{dc}/6$ \\ \hline
+$^6Z$ & 1 & -1 & 1 & $U_{dc}/2$ & $-U_{dc}/2$ & $U_{dc}/2$ & $U_{dc}/3$ & $-2U_{dc}/3$ & $U_{dc}/3$ & $U_{dc}/6$ \\ \hline
+$^7Z$ & 1 & 1 & 1 & $U_{dc}/2$ & $U_{dc}/2$ & $U_{dc}/2$ & 0 & 0 & 0 & $U_{dc}/2$ \\ \hline
+\end{tabular}\par}
+\begin{gather*}
+\vec{u}(t) = u_\alpha + j \cdot u_\beta \\
+u_\alpha = \frac{1}{3}(2 \cdot u_a - u_b - u_c) \\
+u_\beta = \frac{1}{\sqrt{3}}(u_b - u_c)
+\end{gather*}
+
+\columnbreak
+{\centering\footnotesize\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+Zustand & $s_a$ & $s_b$ & $s_c$ & Zeiger & $u_\alpha$ & $u_\beta$ & $|\vec{u}|$ \\ \hline
+$^0Z$ & -1 & -1 & -1 & $^0\ul{U}$ & 0 & 0 & 0 \\ \hline
+$^1Z$ & 1 & -1 & -1 & $^1\ul{U}$ & $2U_{dc}/3$ & 0 & $2U_{dc}/3$ \\ \hline
+$^2Z$ & 1 & 1 & -1 & $^2\ul{U}$ & $U_{dc}/3$ & $U_{dc}/\sqrt{3}$ & $2U_{dc}/3$ \\ \hline
+$^3Z$ & -1 & 1 & -1 & $^3\ul{U}$ & $-U_{dc}/3$ & $U_{dc}/\sqrt{3}$ & $2U_{dc}/3$ \\ \hline
+$^4Z$ & -1 & 1 & 1 & $^4\ul{U}$ & $-2U_{dc}/3$ & 0 & $2U_{dc}/3$ \\ \hline
+$^5Z$ & -1 & -1 & 1 & $^5\ul{U}$ & $-U_{dc}/3$ & $-U_{dc}/\sqrt{3}$ & $2U_{dc}/3$ \\ \hline
+$^6Z$ & 1 & -1 & 1 & $^6\ul{U}$ & $U_{dc}/3$ & $-U_{dc}/\sqrt{3}$ & $2U_{dc}/3$ \\ \hline
+$^7Z$ & 1 & 1 & 1 & $^7\ul{U}$ & 0 & 0 & 0 \\ \hline
+\end{tabular}\par}
+
+\fig[0.6]{wr_raumzeiger_sechseck}
+
+\subsubsection{Optimierte Pulsmuster}
+\begin{gather*}
+\hat{U}_v = \frac{4 \cdot U_{dc}}{\pi \cdot 2} \cdot \frac{1}{v} \cdot (1 - 2 \cdot cos(v \cdot \alpha_1) + 2 \cdot cos(v \cdot \alpha_2)) \\
+M \cdot \frac{4}{\pi} = (1 - 2 \cdot cos(\alpha_1) + 2 \cdot cos(\alpha_2)) % TODO prüfen: laut Skript M * pi/4 = ...
+\\
+\alpha_2 = arccos\left(\frac{M \cdot \frac{\pi}{4} - 1}{2} + cos(\alpha_1)\right) \\
+0 = 1 - 2 \cdot cos(v \cdot \alpha_1) \\
++ 2 \cdot cos\left(v \cdot arccos\left(\frac{M \cdot \frac{\pi}{4} - 1}{2} + cos(\alpha_1)\right)\right)
+\end{gather*}
+TR harmsol(v,M) für $\alpha_1$ ergebnis kleiner 90 und grösser 0!!
+
+\columnbreak
+\fig[0.6]{wr_optimiertes_pulsmuster}

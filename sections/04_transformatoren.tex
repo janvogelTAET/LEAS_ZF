@@ -1,0 +1,98 @@
+% !TEX root = ../main.tex
+\columnbreak
+% =====================================================================
+\section{Transformatoren}
+% =====================================================================
+\begin{symtab}
+U & Spannung & [V] \\
+u$_1$ & Spannung Primärseite & [V] \\
+u$_2$ & Spannung Sekundärseite & [V] \\
+I & Strom & [A] \\
+i$_1$ & strom Primärseite & [A] \\
+i$_2$ & Strom Sekundärseite & [A] \\
+i$_{m1}$ & magnetisierungsstrom Primärseite & [A] \\
+H & Feldstärke & [A/m] \\
+N & Anzahl Wicklungen & [] \\
+N$_1$ & Wicklungen Primärseite & [] \\
+N$_2$ & Wicklungen Sekundärseite & [] \\
+$\phi$ & Magnetischer Fluss & [Vs] \\
+ü & Übersetzungsverhältnis & [] \\
+ü$_k$ & Spannungsfaktor damit Nennstrom fliesst & [] \\
+R$_{fe}$ & Ummagnetisierungsverluste & [$\Omega$] \\
+R$_1$ & Wicklungswiderstand Primärseite & [$\Omega$] \\
+R$_2$ & Wicklungswiderstand Sekundärseite & [$\Omega$] \\
+L$_{h1}$ & Streuinduktivität & [H] \\
+L$_{\sigma 1}$ & Induktivität Primärseite & [H] \\
+L$_{\sigma 1}$ & Induktivität Sekundärseite & [H] \\
+\end{symtab}
+
+\subsection{Ideal}
+\fig[0.3]{trafo_ideal}
+{\setlength{\jot}{3pt}
+\begin{gather*}
+U = N \cdot \frac{d\phi}{dt} \\
+\phi = \frac{1}{N} \int U dt \\
+\text{ü} = \frac{i_2}{i_1} = \frac{u_1}{u_2} = \frac{N_1}{N_2}
+\end{gather*}}
+
+\subsubsection{Magnetisierungsstrom}
+\fig[0.6]{trafo_magnetisierung}
+{\setlength{\jot}{3pt}
+\begin{gather*}
+L_{h1} = \mu_0 \cdot \mu_r \cdot \frac{A_{fe}}{l_{fe}} \cdot N_1^2 \\
+i_{m1} = i_1 - \frac{N_2}{N_1} \cdot i_2
+\end{gather*}}
+
+\columnbreak
+{\setlength{\jot}{3pt}
+\begin{gather*}
+L_{h2} = \frac{L_{h1}}{\text{ü}^2} \\
+\phi = \mu_0 \cdot \mu_r \cdot A_{fe} \cdot H \\
+u_1 = L_{h1} \cdot \frac{di_{m1}}{dt}
+\end{gather*}}
+
+\subsubsection{Streuung}
+\fig[0.6]{trafo_streuung}
+
+\subsection{Real}
+\subsubsection{Wicklungsverluste}
+\fig[0.75]{trafo_wicklungsverluste}
+{\setlength{\jot}{3pt}
+\begin{gather*}
+u_1 = N_1 \cdot \frac{d}{dt}(\phi_h + \phi_{\sigma 1}) \\
+u_2 = N_2 \cdot \frac{d}{dt}(\phi_h + \phi_{\sigma 1}) % TODO prüfen: sekundär wohl phi_sigma2
+\end{gather*}}
+
+\subsubsection{Bezug auf Primärseite}
+\fig[0.9]{trafo_bezug_primaer}
+
+\columnbreak
+\fig[0.9]{trafo_t_ersatzschaltung}
+{\setlength{\jot}{3pt}
+\begin{gather*}
+u'_2 = u_2 \text{ü} \\
+i'_2 = \frac{i_2}{\text{ü}} \\
+R'_2 = R_2 \text{ü}^2 \\
+L'_{\sigma 2} = L_{\sigma 2} \text{ü}^2
+\end{gather*}}
+
+\subsubsection{Leerlaufversuch}
+Bei den Versuchen werden komplexe Wechselstromrechnungen mit $\|Z\|$ gemacht.
+\fig[0.9]{trafo_leerlauf}
+
+\subsubsection{Kurzschlussversuch}
+\fig[0.63]{trafo_kurzschluss}
+ü$_k$ wird ofmals als u$_k$ in \% angegeben\par
+Oft wird folgende Annahme gemacht:
+\begin{gather*}
+L_{\sigma 1} = L'_{\sigma 2} = \frac{L_{\sigma 1} + L'_{\sigma 2}}{2}
+\end{gather*}
+R$_1$ und R$_2$ lassen sich direkt messen.\par
+Spetzialfall falls L$_\sigma$ nicht gegeben und L$_h$ gesucht ist.
+\begin{gather*}
+\omega L_h = \sqrt{Z_{Kurzschluss}^2 - R_{Gemessengesammt}^2}
+\end{gather*}
+
+\columnbreak
+\subsubsection{Sättigung}
+\fig[0.7]{trafo_saettigung}

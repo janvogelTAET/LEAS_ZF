@@ -1,0 +1,115 @@
+% !TEX root = ../main.tex
+% =====================================================================
+\section{Gleichrichter}
+% =====================================================================
+\begin{symtab}
+U$_{di0}$ & DC-Spannung Diode & [V] \\
+U$_{di\alpha}$ & DC-Spannung Tyristor & [V] \\
+U$_{d}$ & DC-Spannung nach Kommutierung & [V] \\
+U$_{dx}$ & DC-Spannungsabfall an induktivität & [V] \\
+U$_{N}$ & Speissespannung am Gleichrichtereingang verkettet & [V] \\
+P$_{N}$ & Gleichrichterleistung & [W] \\
+S$_{N}$ & Gleichrichterscheinleistung & [VA] \\
+i$_{d}$ & Strom durch Last & [A] \\
+i$_{HL_x}$ & Strom durch einen Halbleiter & [A] \\
+i$_{k}$ & Kommutierungsstrom & [A] \\
+I$_{N}$ & Eingangsstrom & [A] \\
+I$_{HL}$ & Halbleiterstrom & [A] \\
+U$_{HL}$ & Halbleiterspannung & [V] \\
+P$_{v}HL$ & Halbleiterverlustleistung (pro HL) & [W] \\
+R$_{HL}$ & Halbleiterwiderstand & [$\Omega$] \\
+L$_{K}$ & Leiterinduktivität & [H] \\
+$\lambda$ & Leistungsfaktor & [ ] \\
+$\omega$ & Kreisfrequenz & [rad$\frac{1}{s}$] \\
+f$_{aus}$ & Rippelfrequenz & [Hz] \\
+f$_{ein}$ & Taktfrequenz & [Hz] \\
+t & Zeit & [s] \\
+ü & Überlappungswinkel & [°] \\
+dx & relativer induktiver Spannungsabfall & [ ] \\
+$\varphi$ & Phasenverschiebungswinkel & [°] \\
+\end{symtab}
+
+\columnbreak
+% ---------------------------------------------------------------------
+\subsection{Einphasig (B2)}
+\fig[0.6]{b2_gleichrichter}
+\begin{gather*}
+i_{HLrms} = \sqrt{\frac{1}{2}} \cdot i_d \\
+i_{HLavg} = \frac{1}{2} \cdot i_d \\
+\lambda = \frac{P_N}{S_N} = 0.9 \cdot \cos\alpha
+\end{gather*}
+
+\subsubsection{ohne Glättung}
+\begin{gather*}
+U_{di0} = \frac{2\sqrt{2}}{\pi} \cdot U_N = 0.9 \cdot U_N \\
+U_{di\alpha} = U_{di0} \cdot \frac{1 + \cos\alpha}{2} \\
+f_{aus} = 2 \cdot f_{ein}
+\end{gather*}
+
+\subsubsection{mit Glättung}
+\begin{gather*}
+U_{di\alpha} = U_{di0} \cdot \cos\alpha \\
+P_{NX} = U_{di0} \cdot i_d = U_{di0} \cdot i_d \cdot \cos\alpha \\
+S_N = U_N \cdot I_N = \frac{\pi}{2\sqrt{2}} \cdot P_N
+\end{gather*}
+
+\columnbreak
+% ---------------------------------------------------------------------
+\subsection{Dreiphasig (B6)}
+\fig[0.6]{b6_gleichrichter}
+\begin{gather*}
+U_{di0} = \frac{3\sqrt{2}}{\pi} \cdot U_N = 1.35 \cdot U_N \\
+U_{di\alpha} = U_{di0} \cdot \cos\alpha \\
+i_N = \sqrt{\frac{2}{3}} \cdot i_d \\
+P_{di\alpha} = U_{di0} \cdot i_d \cdot \cos\alpha \\
+S_N = \sqrt{3} \cdot U_{Nrms} \cdot I_{Nrms} \\
+= \sqrt{3} \cdot \frac{\pi}{3\sqrt{2}} \cdot U_{di0} \cdot \sqrt{\frac{2}{3}} \cdot i_d = 1.047 \cdot U_{di0} \cdot i_d \\
+\lambda = \frac{P_N}{S_N} = 0.955 \cdot \cos\alpha \\
+i_{HLrms} = \sqrt{\frac{1}{3}} \cdot i_d \\
+i_{HLavg} = \frac{1}{3} \cdot i_d \\
+P_{vHL} = U_{HL} \cdot i_{HLavg} + i_{HLrms}^2 \cdot R_{HL}
+\end{gather*}
+
+\columnbreak
+% ---------------------------------------------------------------------
+\subsection{Kommutierung}
+\fig[0.6]{kommutierung_b6}
+\fig[0.9]{kommutierung_stromform}
+\begin{gather*}
+\hat{I}_K = \frac{\hat{U}_N}{2 \cdot \omega \cdot L_K} \\
+I_{k(t)} = \frac{\hat{U}_N}{2 \cdot \omega \cdot L_K} \cdot (1 - \cos(\omega \cdot t)) = \hat{I}_K \cdot (1 - \cos(\omega \cdot t))
+\end{gather*}
+Kommutierung beginnt bei $\alpha$ und endet bei $\alpha + \text{ü}$.
+\begin{gather*}
+\text{ü} = \arccos\left(\cos\alpha - \frac{I_d}{\hat{I}_K}\right) - \alpha \\
+U_d = U_{di0}(\cos\alpha - dx) \\
+U_{dx} = U_{di0} \cdot dx \\
+dx = \frac{I_d}{2 \cdot \hat{I}_K}
+\end{gather*}
+dx normalerweise in \% angegeben.
+\begin{gather*}
+\varphi = \alpha + \frac{2}{3} \cdot \text{ü} \text{ bei } \alpha \lesssim 30^\circ \\
+\varphi = \alpha + \frac{1}{2} \cdot \text{ü} \text{ bei } \alpha \sim 30^\circ - 60^\circ \\
+\varphi = \alpha + \frac{1}{3} \cdot \text{ü} \text{ bei } \alpha \sim 60^\circ - 90^\circ
+\end{gather*}
+
+\columnbreak
+% ---------------------------------------------------------------------
+\subsection{Harmonische}
+{\footnotesize\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.0}
+\noindent Bei 6-pulsigen Schaltungen kommen folgende Harmonische vor:\\
+\begin{tabular*}{\linewidth}{@{}l@{\extracolsep{\fill}}llllllr@{}}
+$U_d$ & n*6:      & 6.     & 12.      & 18.      & 24.      & 30.      & etc. \\
+$i_N$ & n*6 $\pm$ 1: & 5., 7. & 11., 13. & 17., 19. & 23.,25. & 29.,31. & etc. \\
+\end{tabular*}\\[4pt]
+Bei 12-pulsigen Schaltungen kommen folgende Harmonische vor:\\
+\begin{tabular*}{\linewidth}{@{}l@{\extracolsep{\fill}}llllllr@{}}
+$U_d$ & n*12:      & & 12.      & & 24.      & & etc. \\
+$i_N$ & n*12$\pm$1: & & 11., 13. & & 23.,25. & & etc. \\
+\end{tabular*}\\[4pt]
+Bei 24-pulsigen Schaltungen kommen folgende Harmonische vor:\\
+\begin{tabular*}{\linewidth}{@{}l@{\extracolsep{\fill}}llllllr@{}}
+$U_d$ & n*24:      & & & & 24.      & & etc. \\
+$i_N$ & n*24$\pm$1: & & & & 23.,25. & & etc. \\
+\end{tabular*}\par}

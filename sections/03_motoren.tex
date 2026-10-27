@@ -1,0 +1,384 @@
+% !TEX root = ../main.tex
+% =====================================================================
+\section{Motoren}
+% =====================================================================
+\subsection{GM}
+\subsection{Hermonische}
+\fig[0.6]{gm_fremderregt}
+\begin{symtab}
+U$_a$ & Ankerspannung & [V] \\
+U$_e$ & Erregerspannung & [V] \\
+U$_i$ & Induziertespannung & [V] \\
+I$_a$ & Ankerstrom & [A] \\
+I$_e$ & Erregerstrom & [A] \\
+R$_a$ & Ankerwiderstand & [$\Omega$] \\
+R$_e$ & Erregerwiderstand & [$\Omega$] \\
+L$_a$ & Ankerinduktivität & [H] \\
+L$_e$ & Erregerinduktivität & [H] \\
+P$_{el}$ & Leistung & [W] \\
+N$_e$ & Erregerwicklungszahl & [ ] \\
+M$_x$ & Drehmoment & [Nm] \\
+J & Trägheitsmoment & [xxxx] \\
+$\Phi$ & Erregerfluss & [Vs] \\
+c & Maschinenkonstante & [ ] \\
+\end{symtab}
+{\setlength{\jot}{3pt}
+\begin{gather*}
+U_a = R_a \cdot I_a + L_a \cdot \frac{dI_a}{dt} + U_i \\
+U_e = R_e \cdot I_e + L_e \cdot \frac{dI_e}{dt} \\
+M_{el} = M_{Last} + M_R + J \frac{d\omega_m}{dt}
+\end{gather*}}
+
+\columnbreak
+{\setlength{\jot}{3pt}
+\begin{gather*}
+U_i = c \cdot \Phi \cdot \omega_m \\
+M_{el} = c \cdot \Phi \cdot I_a \\
+\Phi = \frac{L_e}{N_e} \cdot I_e \\
+P_{el} = M_{el} \cdot \omega_m + R_e \cdot I_e^2 + R_a \cdot I_a^2
+\end{gather*}
+stationär
+\begin{gather*}
+U_a = U_i + R_a \cdot I_a = c \cdot \Phi \cdot \omega_m + R_a \cdot I_a \\
+n = \omega_m \cdot \frac{60}{2 \cdot \pi}
+\end{gather*}}
+\fig[0.6]{gm_seriegeregt}
+{\setlength{\jot}{3pt}
+\begin{gather*}
+I_a = I_e \\
+\Phi = \frac{L_e}{N_e} \cdot I_e \\
+\omega_m = \frac{U_a - (R_a + R_e) \cdot I_a}{\Phi} \\
+M_{el} = c \cdot \frac{L_e}{N_e} \cdot I_a^2
+\end{gather*}}
+
+% ---------------------------------------------------------------------
+\subsection{Universalmotor}
+\fig[0.6]{universalmotor}
+{\setlength{\jot}{3pt}
+\begin{gather*}
+\ul{U}_e = \ul{I} \cdot R_e + j\omega L_e \cdot \ul{I} \\
+\ul{U}_a = \ul{I} \cdot R_a + j\omega L_a \cdot \ul{I} \\
+\ul{U}_i = c \cdot \Phi \cdot \omega_m = c \cdot \frac{L_e}{N_e} \cdot \ul{I} \cdot \omega_m \\
+\ul{U} = \ul{U}_e + \ul{U}_a + \ul{U}_i = \ul{U}_i + \ul{I}(R_A + R_e) + j\omega\ul{I}(L_a + L_e) \\
+M_{el} = c \cdot \Phi \cdot |\ul{I}|
+\end{gather*}}
+
+\columnbreak
+% ---------------------------------------------------------------------
+\subsection{ASM}
+\begin{symtab}
+$\omega_{D1}$ & Statordrehfeldfrequenz & [ ] \\
+$\omega_{D2}$ & Rotordrehfeldfrequenz & [ ] \\
+$\omega_1$ & Netzfrequenz & [1/s] \\
+$\omega_2$ & Rotor ind. Frequenz & [1/s] \\
+$\omega_{syn}$ & Leerlauffrequenz & [1/s] \\
+$\omega_{mech}$ & mech. Drehfrequenz & [1/s] \\
+p & Polpaarzahl & [ ] \\
+s & Schlupf & [ ] \\
+n & Drehzahl & [rpm] \\
+$\eta$ & Wirkungsgrad & [\%] \\
+U$_{n1}$ & Statorspannung ind. & [V] \\
+U$_{n2}$ & Rotorspannung ind. & [V] \\
+$\Phi_n$ & Hauptfluss & [Vs] \\
+ü & Übersetzungsverhältnis & [] \\
+\end{symtab}
+
+\subsubsection{Grundlagen}
+\begin{gather*}
+\omega_{D1} = \frac{\omega_1}{p} \\
+\omega_{mech} = 2\pi \frac{n}{60} \\
+\omega_{D2} = \omega_{D1} - \omega_{mech} \\
+\omega_2 = \omega_{D2} \cdot p = \omega_1 - p \cdot \omega_{mech} = s \cdot \omega_1 \\
+\omega_{syn} = \omega_{D1} \\
+s = \frac{n_{syn} - n}{n_{syn}} = \frac{\omega_{syn} - \omega_{mech}}{\omega_{syn}} = \frac{\omega_1 - p \cdot \omega_{mech}}{\omega_1} = \frac{\omega_2}{\omega_1}
+\end{gather*}
+\fig[0.45]{asm_stator_rotor}
+\begin{gather*}
+U_{n1} = N_1 \cdot \frac{d\Phi_n}{dt} = \omega_1 \cdot N_1 \cdot \Phi_n = \frac{N_1}{N_2} \cdot \frac{\omega_1}{\omega_2} \cdot U_{n2} = \frac{\text{ü}}{s} \cdot U_{n2} \\
+U_{n2} = N_2 \cdot \frac{d\Phi_n}{dt} = \omega_2 \cdot N_2 \cdot \Phi_n \\
+I_1 = \frac{1}{\text{ü} \cdot I_2} % TODO prüfen: korrekt wäre I_1 = I_2 / ü
+\end{gather*}
+
+\columnbreak
+\subsubsection{Betriebgrenzwerte}
+\fig[0.75]{asm_betriebsgrenzwerte}
+\begin{gather*}
+Stillstand: n = 0, s = 1, \omega_2 = \omega_1, U_{n2} = \frac{U_{n1}}{\text{ü}} \\
+n_{syn}: n = n_{syn}, s = 0, \omega_2 = 0, U_{n2} = 0
+\end{gather*}
+
+\subsubsection{Leistung}
+\begin{symtab}
+P$_1$ & Statorleistung & [W] \\
+P$_2$ & Rotorleistung & [W] \\
+P$_\delta$ & Luftspaltleistung & [W] \\
+P$_{Fe}$ & Eisenleistung & [W] \\
+P$_{mech}$ & Mechanische Leistung & [W] \\
+P$_s$ & Schlupfleistung & [W] \\
+$\eta$ & Wirkungsgrad & [\%] \\
+s & Schlupf & [ ] \\
+\end{symtab}
+\begin{gather*}
+P_1 = 3 \cdot U_{n1} \cdot I_1 = \frac{P_2}{s} \\
+P_2 = 3 \cdot U_{n2} \cdot I_2 = s \cdot P_\delta \\
+P_\delta = P_1 : P_\delta = P_1 - 3 \cdot R_1 \cdot I_1^2 - P_{Fe} \text{ wenn } R_1 \& P_{Fe} \neq 0 \\
+P_\delta = P_2 - P_{mech} \\
+P_{mech} = P_\delta - P_s = (1 - s) \cdot P_\delta = P_1 - P_2
+\end{gather*}
+Wirkungsgrad
+\begin{gather*}
+\eta = \frac{P_{mech}}{P_1} < \frac{P_{mech}}{P_\delta} = 1 - s \quad f\ddot{u}r \quad 0 < s < 1 \\
+\eta = \frac{P_1}{P_{mech}} < \frac{P_\delta}{P_{mech}} = \frac{1}{1 - s} \quad f\ddot{u}r \quad s < 0
+\end{gather*}
+
+\columnbreak
+\fig[0.9]{asm_betriebsarten}
+
+\subsubsection{Ersatzschema}
+\begin{symtab}
+R$_1$ & Statorwiderstand & [$\Omega$] \\
+R$_2$ & Rotorwiderstand & [$\Omega$] \\
+R$'_2$ & Rotorwiderstand auf Statorseite & [$\Omega$] \\
+R$_s$ & Läuferwiderstand & [$\Omega$] \\
+R$'_s$ & Läuferwiderstand auf Statorseite & [$\Omega$] \\
+R$_{Fe}$ & Streuwiderstand & [$\Omega$] \\
+L$_{\sigma 1}$ & Statorinduktivität & [H] \\
+L$_{\sigma 2}$ & Rotorinduktivität & [H] \\
+L$'_{\sigma 2}$ & Rotorinduktivität auf Statorseite & [H] \\
+L$_h$ & Streuinduktivität & [H] \\
+U$_1$ & Statorspannung & [V] \\
+U$_2$ & Rotorspannung & [V] \\
+U$'_2$ & Rotorspannung auf Statorseite & [V] \\
+ü & Übersetzungsverhältnis & [] \\
+$\psi_1$ & Statorfluss & [Vs] \\
+$\psi_2$ & Rotorfluss & [Vs] \\
+p & Polparzahl & [] \\
+\end{symtab}
+\fig[0.9]{asm_ersatzschema}
+{\setlength{\jot}{1pt}
+\begin{gather*}
+U'_2 = \text{ü} \cdot \ul{U}_2 \\
+I'_2 = \frac{I_2}{\text{ü}} \\
+R'_2 = \text{ü}^2 \cdot R_2 \\
+R'_s = \text{ü}^2 \cdot R_s \\
+R'_s + R'_2 = \frac{R'_2}{s} \\
+L'_{\sigma 2} = \text{ü}^2 \cdot L_{\sigma 2}
+\end{gather*}}
+
+\subsubsection{Drehmoment}
+\begin{symtab}
+M$_{el}$ & elektrisches Drehmoment & [Nm] \\
+M$_k$ & Kippmoment & [Nm] \\
+M$_{Reibung}$ & Reibungsmoment & [Nm] \\
+P$_{mech}$ & mechanische Leistung & [W] \\
+P$_\sigma$ & Luftspaltleistung & [W] \\
+s$_k$ & Kippschlupf & [] \\
+\end{symtab}
+\fig[0.9]{asm_drehmomentkennlinie}
+{\setlength{\jot}{1pt}
+\begin{gather*}
+M_{el} = \frac{P_{mech}}{\omega_{mech}} = \frac{(1 - s) \cdot P_\sigma}{(1 - s) \cdot \omega_{D1}} = \frac{P_\sigma \cdot p}{\omega_1} \\
+M_{el} = \frac{3 \cdot p}{\omega_1} \cdot \frac{U_1^2}{(R_1 + \frac{R'_2}{s})^2 + (\omega_1 \cdot L_{\sigma 1} + \omega_1 \cdot L'_{\sigma 2})^2} \cdot \frac{R'_2}{s} \\
+P_{mech} = 3 \cdot I_2^2 \cdot R_s \\
+M_{el} \cong \frac{3 \cdot p}{\omega_1} \cdot \frac{U_1^2}{R'_2} \cdot s
+\end{gather*}}
+Folgende für Kipppunkt
+{\setlength{\jot}{1pt}
+\begin{gather*}
+\frac{dM_{el}}{ds} = 0 \\
+s_k = \frac{R'_2}{\sqrt{R_1^2 + (\omega_1 \cdot L_{\sigma 1} + \omega_1 \cdot L'_{\sigma 2})^2}} \\
+\text{bei } R_1 = 0 \rightarrow s_k = \frac{R'_2}{\omega_1 \cdot (L_{\sigma 1} + L'_{\sigma 2})} \\
+M_k = \frac{3 \cdot p}{2 \cdot \omega_1} \cdot \frac{U_1^2}{R_1 + \omega_1 \cdot L_{\sigma 1} + \omega_1 \cdot L'_{\sigma 2}} % TODO prüfen: im Nenner fehlt die Wurzel
+\\
+\text{bei } R_1 = 0 \rightarrow M_k = \frac{3 \cdot p}{2(L_{\sigma 1} + L'_{\sigma 2})} \cdot \frac{U_1^2}{\omega_1^2} \\
+M = M_{el} - M_{Reibung} \\
+\frac{M_{el}}{M_k} = \frac{2}{\frac{s}{s_k} + \frac{s_k}{s}}
+\end{gather*}}
+
+\columnbreak
+\subsubsection{Flussverkettung rechnen}
+\begin{symtab}
+I$_{1n}$ & Strom Nennbetrieb & [A] \\
+I$_{10}$ & Strom Leerlauf & [A] \\
+P & Wirkleistung El. aufgenommen & [W] \\
+\end{symtab}
+\begin{achtung}
+Spannungen sind Einphasig
+\end{achtung}
+\begin{gather*}
+\Psi_x = \frac{\ul{U}_{Lx}}{j\omega_x} \\
+\ul{I}_{1n} = \|\hat{I}_{1n}\| \cdot (\cos(\varphi) + j \cdot \sin(\varphi)) \\
+\cos(\varphi) = \frac{P}{S} = \frac{P}{3 \cdot U_1 \cdot I_1}
+\end{gather*}
+
+\subsubsection{Zeiger Dynamisch Stator ($\alpha,\beta-KoS$)}
+{\setlength{\jot}{3pt}
+\begin{gather*}
+\ul{u}_1 = R_1 \cdot \ul{i}_1 + \frac{d\ul{\psi}_1}{dt} \\
+\ul{u}_2 = R_2 \cdot \ul{i}_2 + \frac{d\ul{\psi}_2}{dt} - j \cdot p \cdot \omega_{mech} \cdot \ul{\psi}_2 \\
+\ul{\psi}_1 = L_1 \cdot \ul{i}_1 + L_h \cdot \ul{i}_2 \\
+\ul{\psi}_1 = (L_h + L_{\sigma 1}) \cdot \ul{i}_1 + L_h \cdot \ul{i}_2 \\
+\ul{\psi}_1 = L_h \cdot (\ul{i}_1 + \ul{i}_2) + L_{\sigma 1} \cdot \ul{i}_1 \\
+\ul{\psi}_2 = L_2 \cdot \ul{i}_2 + L_h \cdot \ul{i}_1 \\
+\ul{\psi}_2 = (L_h + L_{\sigma 2}) \cdot \ul{i}_2 + L_h \cdot \ul{i}_1 \\
+\ul{\psi}_2 = L_h \cdot (\ul{i}_1 + \ul{i}_2) + L_{\sigma 2} \cdot \ul{i}_2 \\
+M = \frac{3p}{2} \cdot Im(\ul{\psi}_1^* \cdot \ul{i}_1) = \frac{3p}{2} \frac{L_h}{L_1} \cdot Im(\ul{\psi}_2^* \cdot \ul{i}_1) = \frac{3p}{2} \frac{L_h}{L_2} \cdot Im(\ul{\psi}_1^* \cdot \ul{i}_2) \\
+\omega_{mech} = \frac{1}{J} \int (M - M_{Last}) dt
+\end{gather*}}
+
+\subsubsection{Zeiger Dynamisch Rotor (I, Q-KoS)}
+{\setlength{\jot}{3pt}
+\begin{gather*}
+\ul{u}_1 = R_1 \cdot \ul{i}_1 + \frac{d\ul{\psi}_1}{dt} + j \cdot \omega_k \cdot \ul{\psi}_1 \\
+\ul{u}_2 = R_2 \cdot \ul{i}_2 + \frac{d\ul{\psi}_2}{dt} + j \cdot (\omega_k - p \cdot \omega_{mech}) \cdot \ul{\psi}_2 \\
+\ul{\psi}_1 = L_1 \cdot \ul{i}_1 + L_h \cdot \ul{i}_2 \\
+\ul{\psi}_2 = L_2 \cdot \ul{i}_2 + L_h \cdot \ul{i}_1 \\
+M = \frac{3p}{2} \cdot Im(\ul{\psi}_1^* \cdot \ul{i}_1) = \frac{3p}{2} \frac{L_h}{L_1} \cdot Im(\ul{\psi}_2^* \cdot \ul{i}_1) = \frac{3p}{2} \frac{L_h}{L_2} \cdot Im(\ul{\psi}_1^* \cdot \ul{i}_2) \\
+\omega_{mech} = \frac{1}{J} \int (M - M_{Last}) dt
+\end{gather*}}
+
+\columnbreak
+% ---------------------------------------------------------------------
+\subsection{SM}
+\subsubsection{Allgemein}
+\begin{symtab}
+M$_{el}$ & Elektrisches Drehmoment & [Nm] \\
+M$_{mech}$ & Mechanisches Moment & [Nm] \\
+$\omega_{el}$ & elektrische Kreisfrequenz & [Hz] \\
+$\omega_{mech}$ & mechanische Kreisfrequenz & [Hz] \\
+p & Polpaarzahl & [] \\
+U$_1$ & Klemmenspannung & [V] \\
+U$_p$ & Polradspannung ind. & [V] \\
+U$_{R_1}$ & Widerstandsspannung & [V] \\
+U$_{L_a}$ & Leiterinduktivitätspannung & [V] \\
+U$_{L_\sigma}$ & Induktivität Primärseite Spannung & [V] \\
+U$_{L_d}$ & Kombinierte Leiterinduktivitätspannung & [V] \\
+$\Delta\ul{U}$ & Kombinierte Leiterspannung & [V] \\
+U$_{1d}$ & D-Komponente der Spannung & [V] \\
+U$_{1q}$ & Q-Komponente der Spannung & [V] \\
+R$_1$ & Leiterwiderstand & [$\Omega$] \\
+X$_d$ & Spulenwiderstand & [$\Omega$] \\
+L$_a$ & Leiterinduktivität & [H] \\
+L$_\sigma$ & Induktivität Primärseite & [H] \\
+L$_d$ & Kombinierte Induktivität Primärseite & [H] \\
+I$_1$ & Leiterstrom & [A] \\
+I$_{1d}$ & D-Komponente der Stroms & [A] \\
+I$_{1q}$ & Q-Komponente der Stroms & [A] \\
+$\psi_p$ & Phasenwinkel & [] \\
+$\vartheta$ & Polradwinkel & [] \\
+\end{symtab}
+\fig[0.9]{sm_ersatzschaltung}
+{\setlength{\jot}{3pt}
+\begin{gather*}
+M_{mech} = p \cdot M_{el} \\
+\omega_{mech} = \frac{\omega_{el}}{p} \\
+\ul{U}_p = j\omega_1 \cdot \ul{\psi}_p \\
+\ul{U}_{L_d} = L_d \cdot \frac{di_1}{dt} \\
+\ul{U}_1 = \ul{I}_1(R_1 + j\omega L_d) + \ul{U}_p = \Delta\ul{U} + \ul{U}_p \\
+\Delta\ul{U} = jX_d \cdot \ul{I}_1 + R_1 \cdot \ul{I}_1 \\
+X_d = \omega L_d = \omega(L_\sigma + L_a) \\
+\ul{I}_1 = -j \cdot \frac{\Delta\ul{U}}{X_d}
+\end{gather*}}
+
+\columnbreak
+\fig[0.9]{sm_am_netz}
+
+\subsubsection{Drehmoment}
+\fig[0.9]{sm_drehmoment}
+\begin{gather*}
+U_{1d} = U_1 \cdot \sin\vartheta \\
+U_{1q} = U_1 \cdot \cos\vartheta \\
+I_{1d} = \frac{U_1 \cdot \cos(\vartheta) - U_p}{X_d} \\
+I_{1q} = \frac{U_1 \cdot \sin(\vartheta)}{X_d} \\
+I_1 = \sqrt{I_{1d}^2 + I_{1q}^2}
+\end{gather*}
+
+\columnbreak
+% ---------------------------------------------------------------------
+\subsection{Dynamische Zeiger für SM}
+\begin{symtab}
+L$_d$ & Ersatzwicklung von Stator in d & [H] \\
+L$_q$ & Ersatzwicklung von Stator in q & [H] \\
+L$_D$ & Ersatzwicklung von Dämpferkreis in d & [H] \\
+L$_Q$ & Ersatzwicklung von Dämpferkreis in q & [H] \\
+L$_E$ & Ersatzwicklung von Erregerwicklung & [H] \\
+L$_{qQ}$ & Kopplungsinduktivität bei $L_q$ und $L_Q$ & [H] \\
+L$_{ED}$ & Kopplungsinduktivität bei $L_E$ und $L_D$ & [H] \\
+L$_{dD}$ & Kopplungsinduktivität bei $L_d$ und $L_D$ & [H] \\
+L$_{dE}$ & Kopplungsinduktivität bei $L_d$ und $L_E$ & [H] \\
+$\Psi_d$ & Stator verketteter Fluss in d & [Vs] \\
+$\Psi_q$ & Stator verketteter Fluss in q & [Vs] \\
+$\Psi_D$ & Dämpferkreis verketteter Fluss in d & [Vs] \\
+$\Psi_Q$ & Dämpferkreis verketteter Fluss in q & [Vs] \\
+$\Psi_E$ & Erreger verketteter Fluss & [Vs] \\
+$\Psi_0$ & Erreger verketteter Fluss vereinfacht & [Vs] \\
+\end{symtab}
+\fig[0.55]{sm_dq_wicklungen}
+
+\subsubsection{Statorspannung und Statorfluss}
+{\setlength{\jot}{2pt}
+\begin{gather*}
+U_{1d} = R_1 \cdot I_d + \frac{d\Psi_d}{dt} - p \cdot \omega_{mech} \cdot \Psi_q \\
+U_{1q} = R_1 \cdot I_q + \frac{d\Psi_q}{dt} - p \cdot \omega_{mech} \cdot \Psi_d \\
+\Psi_d = L_d \cdot I_d + L_{dE} \cdot I_E + L_{dD} \cdot I_D \\
+\Psi_q = L_q \cdot I_q + L_{qQ} \cdot I_Q
+\end{gather*}}
+
+\subsubsection{Dämpferspannung und Dämpferfluss}
+{\setlength{\jot}{2pt}
+\begin{gather*}
+0 = R_D \cdot I_D + \frac{d\Psi_D}{dt} \\
+0 = R_Q \cdot I_Q + \frac{d\Psi_Q}{dt} \\
+\Psi_D = L_{dD} \cdot I_d + L_{ED} \cdot I_E + L_D \cdot I_D \\
+\Psi_Q = L_{qQ} \cdot I_q + L_Q \cdot I_Q
+\end{gather*}}
+
+\subsubsection{Erregerspannung und Erregerfluss}
+{\setlength{\jot}{2pt}
+\begin{gather*}
+U_E = R_E + I_E + \frac{d\Psi_E}{dt} % TODO prüfen: gemeint ist R_E * I_E
+\\
+\Psi_E = L_{dE} \cdot I_d + L_E \cdot I_E + L_{ED} \cdot I_D
+\end{gather*}}
+
+\columnbreak
+\subsubsection{Drehmoment}
+\begin{gather*}
+M = \frac{3 \cdot p}{2} \cdot (I_q \cdot \Psi_d - I_d \cdot \Psi_q) \\
+\omega_{mech} = \frac{1}{J} \int (M - M_{Last}) dt
+\end{gather*}
+
+\subsubsection{Vereinfacht}
+Diese Formeln gelten, falls:\\
+- Die Dämpferwicklungen weggelassen werden\\
+- Das Feld, verursacht durch den Erregerstrom, als konstant angenommen wird.\\
+Bei Vollpolmaschienen kann weiter vereinfacht werden, da $L_d = L_q$
+{\setlength{\jot}{4pt}
+\begin{gather*}
+\Psi_0 = L_{dE} \cdot I_E \\
+U_{1d} = R_1 \cdot I_d + \frac{d\Psi_d}{dt} - p \cdot \omega_{mech} \cdot \Psi_q \\
+U_{1q} = R_1 \cdot I_q + \frac{d\Psi_q}{dt} - p \cdot \omega_{mech} \cdot \Psi_d \\
+\Psi_d = L_d \cdot I_d + \Psi_0 \\
+\Psi_q = L_q \cdot I_q \\
+I_d = \frac{\Psi_d - \Psi_0}{L_d} \\
+I_q = \frac{\Psi_q}{L_q} \\
+M = \frac{3 \cdot p}{2}(I_q \cdot \Psi_d - I_d \cdot \Psi_q) = \frac{3 \cdot p}{2}(I_q \cdot \Psi_0 + I_d \cdot I_q(L_d - Lq)) \\
+\omega_{mech} = \frac{1}{J} \int (M - M_{Last}) dt
+\end{gather*}}
+
+% ---------------------------------------------------------------------
+\subsection{Vollpol}
+\begin{gather*}
+P_{mech} = M_{mech} \cdot \omega_{mech} = 3(U_{1d} \cdot I_{1d} + U_{1q} \cdot I_{1q}) \\
+P_{mech} = \frac{3 \cdot U_1 \cdot U_p}{X_d} \cdot \sin\vartheta = 3 \cdot U_p \cdot I_{1q} \\
+\omega_{mech} = \frac{\omega_1}{p} = 2\pi f_{mech} = 2\pi \frac{n}{60} \\
+M_{mech} = \frac{3 \cdot p \cdot U_1 \cdot U_p}{\omega_1 \cdot X_d} \cdot \sin\vartheta = \frac{3 \cdot p}{\omega_1} \cdot U_p \cdot I_{1p} = \frac{P_{mech}}{\omega_{mech}}
+\end{gather*}
+
+% ---------------------------------------------------------------------
+\subsection{Schenkelpol}
+\begin{gather*}
+P_{mech} = \frac{3 \cdot U_1 \cdot U_p}{X_d} \cdot \sin(\vartheta) + \frac{3 \cdot U_1^2}{2}\left(\frac{1}{Xq} - \frac{1}{Xd}\right) \cdot \sin(s \cdot \vartheta) % TODO prüfen: üblich ist sin(2*theta)
+\\
+M_{mech} = M_{kipp} \cdot \sin(\vartheta)
+\end{gather*}
